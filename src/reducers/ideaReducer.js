@@ -14,6 +14,7 @@ export default function ideaReducer(state = {ideas:[], loading: false}, action) 
         }
     case 'ADD_IDEA':
         return {...state, ideas: [...state.ideas, action.payload]}
+
     default:
         return state
     }

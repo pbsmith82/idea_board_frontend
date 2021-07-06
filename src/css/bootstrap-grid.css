@@ -91,6 +91,11 @@
   width: 45%;
   margin: 10px;
 }
+.row-cols-22 > * {
+  flex: 0 0 auto;
+  width: 45%;
+
+}
 
 .row-cols-3 > * {
   flex: 0 0 auto;
