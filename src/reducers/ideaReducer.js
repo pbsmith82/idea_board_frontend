@@ -15,6 +15,16 @@ export default function ideaReducer(state = {ideas:[], loading: false}, action) 
     case 'ADD_IDEA':
         return {...state, ideas: [...state.ideas, action.payload]}
 
+    case 'UPDATE_IDEA':
+        let updatedIdeas = state.ideas.map(idea => {
+            if (idea.id === action.payload.id) {
+            return action.payload
+            } else {
+            return idea
+            }
+        })    
+        return {...state, ideas: updatedIdeas}
+    
     default:
         return state
     }

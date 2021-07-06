@@ -2,6 +2,7 @@ import '../css/bootstrap.css'
 import '../css/bootstrap-grid.css'
 import React from 'react'
 import {Link} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 
 
@@ -12,7 +13,7 @@ const Ideas = (props) => {
     return (
         <div className="container container-lg"> 
             <br/>
-            <h1 className="display-5">Ideas</h1>
+            <h1 className="display-5"><i className="far fa-lightbulb" style={{color: '#ffc107'}}></i>&nbsp;&nbsp;Ideas</h1>
             <div className="row row-cols-2"> 
                 {props.ideas.map(idea =>
                 <div key={idea.id}>
@@ -23,11 +24,15 @@ const Ideas = (props) => {
                         {idea.attributes.description}
                     </div>
                     <div className="card-footer shadow  bg-light">
-                    <div className="row row-cols-22"> 
-                       <div> Likes: {idea.attributes.likes} </div>
+                    <div className="row row-cols-33"> 
+                       <div> <i class="far fa-thumbs-up fa-2x" style={{color: '#ffc107'}}></i>&nbsp;&nbsp; {idea.attributes.likes} </div>
+                       <div> <i class="fas fa-comments fa-2x" style={{color: '#ffc107'}}></i>&nbsp;&nbsp; {idea.relationships.comments.data.length} </div>
                        <div align="right">
-                       <Link to={`/ideas/${idea.attributes.id}`}>
+                       <Link to={`/ideas/${idea.attributes.id}/edit`}>
                        <button className="btn btn-warning shadow-sm btn-sm"> Edit </button>
+                       </Link>
+                       <Link to={`/ideas/${idea.attributes.id}`}>
+                       <button className="btn btn-primary shadow-sm btn-sm"> View </button>
                        </Link>
                        </div>
                     </div>
@@ -44,4 +49,4 @@ const Ideas = (props) => {
 
 
 
-export default Ideas
+export default withRouter(Ideas)
