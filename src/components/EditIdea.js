@@ -65,7 +65,7 @@ class EditIdea extends React.Component {
                         <div align="center">
                             <input type="Submit" className="btn btn-primary btn-sm"/>
                             &nbsp;&nbsp;
-                            <Link to={`/ideas`}>
+                            <Link to={`/ideas/${this.props.idea.id}`}>
                             <input type="button" value="Cancel" className="btn btn-danger shadow-sm btn-sm"/>
                             </Link>
                         

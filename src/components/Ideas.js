@@ -3,12 +3,13 @@ import '../css/bootstrap-grid.css'
 import React from 'react'
 import {Link} from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
+import Likes from './Likes'
+
 
 
 
 
 const Ideas = (props) => {
-
 
     return (
         <div className="container container-lg"> 
@@ -25,8 +26,9 @@ const Ideas = (props) => {
                     </div>
                     <div className="card-footer shadow  bg-light">
                     <div className="row row-cols-33"> 
-                       <div> <i class="far fa-thumbs-up fa-2x" style={{color: '#ffc107'}}></i>&nbsp;&nbsp; {idea.attributes.likes} </div>
-                       <div> <i class="fas fa-comments fa-2x" style={{color: '#ffc107'}}></i>&nbsp;&nbsp; {idea.relationships.comments.data.length} </div>
+                       {/* <div> <button className="btn btn-outline-dark shadow-sm btn-sm"> <i className="far fa-thumbs-up fa-2x" style={{color: '#ffc107'}}/> </button>&nbsp;&nbsp; {idea.attributes.likes} </div> */}
+                       <Likes idea={idea} />
+                       <div> <i className="fas fa-comments fa-2x" style={{color: '#ffc107'}}></i>&nbsp;&nbsp; {idea.relationships.comments.data.length} </div>
                        <div align="right">
                        <Link to={`/ideas/${idea.attributes.id}/edit`}>
                        <button className="btn btn-warning shadow-sm btn-sm"> Edit </button>

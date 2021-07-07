@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import '../css/bootstrap.css'
 import '../css/bootstrap-grid.css'
+import Comments from './Comments'
 
 
 const Idea = (props) => {
@@ -34,7 +35,8 @@ const Idea = (props) => {
                     <button className="btn btn-danger shadow-sm btn-sm"> Cancel </button>
                     </Link>
                 </div>
-            </div>
+            </div><br/><br/><br/><br/>
+            <Comments idea={idea}/>
         </div>        
     )
     
