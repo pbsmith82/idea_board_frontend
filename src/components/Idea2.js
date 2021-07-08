@@ -1,5 +1,4 @@
 import React from 'react'
-import { Redirect } from 'react-router'
 import EditIdea from './EditIdea'
 
 const Idea2 = (props) => {

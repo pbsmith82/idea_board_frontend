@@ -1,5 +1,4 @@
 export function fetchIdea() {
-    console.log("hi")
     return (dispatch) => {   
         dispatch({ type: 'LOADING_IDEA'})     
         fetch('http://localhost:8080/ideas')
