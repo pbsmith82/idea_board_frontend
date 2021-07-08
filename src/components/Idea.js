@@ -5,10 +5,10 @@ import '../css/bootstrap-grid.css'
 import Comments from './Comments'
 
 
+
 const Idea = (props) => {
-    
-    let idea = props.ideas.filter(idea => idea.attributes.id === parseInt(props.match.params.id))[0]
-    
+   
+    let idea = props.ideas.find( ({id}) => id === `${parseInt(props.match.params.id)}`)
     
     return (
         <div className="container" align="center"> <br/>
@@ -41,6 +41,8 @@ const Idea = (props) => {
     )
     
 }
+
+
 
 
 export default Idea

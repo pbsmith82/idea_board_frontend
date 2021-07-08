@@ -52,6 +52,7 @@ export default function ideaReducer(state = {ideas:[], loading: false}, action) 
         })    
         return {...state, ideas: newLike}
     
+    
     default:
         return state
     }
