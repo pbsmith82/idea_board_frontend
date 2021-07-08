@@ -52,7 +52,7 @@ class EditIdea extends React.Component {
                     </div>
                     <label hidden={true}>Idea Component: </label>
                     <div className="input-group mb-3">
-                        <span className="input-group-text" id="basic-addon2">Component:</span>
+                        <span className="input-group-text" id="basic-addon2">Component ID:</span>
                         <input type='text' className="form-control" value={this.state.component_id} name="component_id" aria-label="component" aria-describedby="basic-addon2" onChange={this.handleChange}/> 
                     </div>
                     <label hidden={true}>Idea Description: </label>
