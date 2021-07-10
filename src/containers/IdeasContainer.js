@@ -7,6 +7,8 @@ import Idea from '../components/Idea'
 import Idea2 from '../components/Idea2'
 import NewComment from '../components/NewComment'
 import NewIdea from '../components/NewIdea'
+import { fetchComponents } from '../actions/fetchComponents'
+
 
 
 
@@ -14,6 +16,7 @@ class IdeasContainer extends React.Component {
 
     componentDidMount() {
         this.props.fetchIdeas()
+        this.props.fetchComponents()
     }
 
     handelLoading () {
@@ -48,6 +51,14 @@ const mapStateToProps = state => {
     }
 }
 
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         fetchIdeas: () => dispatch({ type:}).fetchIdeas,
+//         fetchComponents: actions.fetchComponents
+//     }
+
+// }
 
 
-export default connect(mapStateToProps, {fetchIdeas})(IdeasContainer)
+
+export default connect(mapStateToProps, {fetchIdeas, fetchComponents})(IdeasContainer)

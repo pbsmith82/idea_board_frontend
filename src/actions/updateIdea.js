@@ -1,4 +1,5 @@
 export const updateIdea = (data) => {
+  debugger
     return (dispatch) => {
       fetch(`http://localhost:8080/ideas/${data.id}`, {
         headers: {

@@ -1,4 +1,4 @@
-export default function ideaReducer(state = {ideas:[], loading: false}, action) {
+export default function ideaReducer(state = {ideas:[], loading: false, components:[]}, action) {
    switch(action.type){
     case 'LOADING_IDEAS':
            return {
@@ -51,6 +51,20 @@ export default function ideaReducer(state = {ideas:[], loading: false}, action) 
             }
         })    
         return {...state, ideas: newLike}
+
+    case 'LOADING_COMPONENTS':
+        console.log(action.payload)
+            return {
+             ...state,
+             components: [...state.components],
+             loading: true
+            }
+     case'FETCH_COMPONENTS':
+         return {
+             ...state,
+             components: action.payload,
+             loading: false
+         }
     
     
     default:

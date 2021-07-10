@@ -47,10 +47,13 @@ class NewIdea extends React.Component {
                         <span className="input-group-text" id="basic-addon1">Idea Title:</span>
                         <input type='text' className="form-control" value={this.state.title} name="title" aria-label="title" aria-describedby="basic-addon1" onChange={this.handleChange}/> 
                     </div>
-                    <label hidden={true}>Idea Component: </label>
                     <div className="input-group mb-3">
-                        <span className="input-group-text" id="basic-addon2">Component ID:</span>
-                        <input type='text' className="form-control" value={this.state.component} name="component_id" aria-label="component" aria-describedby="basic-addon2" onChange={this.handleChange}/> 
+                    <label className="input-group-text" for="basic-addon2">Component:</label>
+                        <select className="form-select" value={this.state.component_id} id="basic-addon2" name="component_id" aria-label="component" aria-describedby="basic-addon2" onChange={this.handleChange}>
+                            <option selected>Choose...</option>
+                            <option value="1">Chat</option>
+                            <option value="2">Notifications</option>
+                        </select> 
                     </div>
                     <label hidden={true}>Idea Description: </label>
                     <div className="input-group mb-3">
