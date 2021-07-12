@@ -51,9 +51,9 @@ class EditIdea extends React.Component {
                         <input type='text' className="form-control" value={this.state.title} name="title" aria-label="title" aria-describedby="basic-addon1" onChange={this.handleChange}/> 
                     </div>
                     <div className="input-group mb-3">
-                        <label className="input-group-text" for="basic-addon2">Component:</label>
+                        <label className="input-group-text" htmlFor="basic-addon2">Component:</label>
                         <select className="form-select" value={this.state.component_id} id="basic-addon2" name="component_id" aria-label="component" aria-describedby="basic-addon2" onChange={this.handleChange}>
-                            <option selected>Choose...</option>
+                            <option defaultValue>Choose...</option>
                             <option value="1">Chat</option>
                             <option value="2">Notifications</option>
                         </select> 
