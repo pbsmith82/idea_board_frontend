@@ -1,13 +1,13 @@
-export const sendIdea = (data) => {
-
+export const sendDislike = (data) => {
+ 
     return (dispatch) => {
-        return fetch('http://localhost:3000/ideas', {
+        return fetch(`http://localhost:3000/ideas/${data.id}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            method: 'POST',
-            body: JSON.stringify({ idea: data })
+            method: 'PATCH',
+            body: JSON.stringify({ idea: { dislikes: data.dislikes } })
         })
         .then(resp => {
             if (!resp.ok) {
@@ -19,10 +19,10 @@ export const sendIdea = (data) => {
         })
         .then(idea => {
             if (idea.data && idea.data.attributes) {
-                dispatch({type: 'ADD_IDEA', payload: idea.data});
-                return idea.data; // Return so the promise resolves
+                dispatch({type: 'ADD_DISLIKE', payload: idea.data});
+                return idea.data;
             } else if (idea.error) {
-                console.error('Error saving idea:', idea.error);
+                console.error('Error updating dislike:', idea.error);
                 throw new Error(idea.error);
             } else {
                 console.error('Unexpected response format:', idea);
@@ -30,9 +30,10 @@ export const sendIdea = (data) => {
             }
         })
         .catch(error => {
-            console.error('Error sending idea:', error);
-            alert('Error saving idea: ' + error.message);
-            throw error; // Re-throw so the promise rejects
+            console.error('Error sending dislike:', error);
+            alert('Error updating dislike: ' + error.message);
+            throw error;
         })
     }
 }
+

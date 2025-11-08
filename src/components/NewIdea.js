@@ -1,33 +1,54 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {sendIdea} from '../actions/sendIdea'
-import '../css/bootstrap.css'
-import '../css/bootstrap-grid.css'
+import {fetchIdeas} from '../actions/fetchIdeas'
+import {fetchComponents} from '../actions/fetchComponents'
+import '../css/modern.css'
 import { withRouter } from 'react-router-dom'
 import {compose} from "redux"
 import {Link} from 'react-router-dom'
 
 class NewIdea extends React.Component {
 
+    componentDidMount() {
+        // Fetch components if not already loaded
+        if (!this.props.components || this.props.components.length === 0) {
+            this.props.fetchComponents()
+        }
+    }
+
     state = {
 
         title: '',
         component_id: '',
         description: '',
-        likes: 1
+        likes: 1,
+        dislikes: 0
 
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.sendIdea(this.state)
-        this.setState({
-            title: '',
-            component_id: '',
-            description: '',
-            likes: 1
+        // Convert component_id to integer if it's not empty
+        const ideaData = {
+            ...this.state,
+            component_id: this.state.component_id ? parseInt(this.state.component_id) : null
+        }
+        this.props.sendIdea(ideaData).then(() => {
+            // Refetch ideas to ensure we have the latest data
+            this.props.fetchIdeas()
+            this.setState({
+                title: '',
+                component_id: '',
+                description: '',
+                likes: 1,
+                dislikes: 0
+            })
+            this.props.history.push('/ideas')
+        }).catch(error => {
+            // Error is already handled in sendIdea action
+            console.error('Failed to save idea:', error)
         })
-        this.props.history.push('/ideas')
     }
 
     handleChange = (e) => {
@@ -38,44 +59,99 @@ class NewIdea extends React.Component {
 
     render() {
         return(
-
-            <div className="container" align="center"><br/>
-                <h1 className="display-5"><i className="far fa-lightbulb" style={{color: '#ffc107'}}></i>&nbsp;&nbsp;Add Your Idea</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <label hidden={true}>Idea Title: </label><br/>
-                    <div className="input-group mb-3">
-                        <span className="input-group-text" id="basic-addon1">Idea Title:</span>
-                        <input type='text' className="form-control" value={this.state.title} name="title" aria-label="title" aria-describedby="basic-addon1" onChange={this.handleChange}/> 
-                    </div>
-                    <div className="input-group mb-3">
-                    <label className="input-group-text" htmlFor="basic-addon2">Component:</label>
-                        <select className="form-select" value={this.state.component_id} id="basic-addon2" name="component_id" aria-label="component" aria-describedby="basic-addon2" onChange={this.handleChange}>
-                            <option defaultValue>Choose...</option>
-                            <option value="1">Chat</option>
-                            <option value="2">Notifications</option>
-                        </select> 
-                    </div>
-                    <label hidden={true}>Idea Description: </label>
-                    <div className="input-group mb-3">
-                        <span className="input-group-text" id="basic-addon3">Description:</span>
-                        <textarea className="form-control" value={this.state.description} name="description" aria-label="description" aria-describedby="basic-addon3" onChange={this.handleChange}/>
-                    </div>
-                    <div className="row2 row-cols-22">
-                        <div></div>
-                        <div align="center">
-                            <input type="Submit" className="btn btn-primary btn-sm" />
-                            &nbsp;&nbsp;
-                            <Link to={`/ideas`}>
-                            <input type="button" value="Cancel" className="btn btn-danger shadow-sm btn-sm"/>
-                            </Link>
+            <div className="modern-form-container">
+                <div className="modern-page-header">
+                    <h1 className="modern-page-title">
+                        <i className="far fa-lightbulb"></i>
+                        Add Your Idea
+                    </h1>
+                </div>
+                <div className="modern-form">
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="form-group-modern">
+                            <label className="form-label-modern" htmlFor="title">
+                                <i className="fas fa-heading" style={{marginRight: '0.5rem'}}></i>
+                                Idea Title
+                            </label>
+                            <input 
+                                type='text' 
+                                id="title"
+                                className="form-input-modern" 
+                                value={this.state.title} 
+                                name="title" 
+                                placeholder="Enter a catchy title for your idea..."
+                                onChange={this.handleChange}
+                                required
+                            /> 
                         </div>
-                    </div>                
-                </form>
+                        <div className="form-group-modern">
+                            <label className="form-label-modern" htmlFor="component_id">
+                                <i className="fas fa-puzzle-piece" style={{marginRight: '0.5rem'}}></i>
+                                Component
+                            </label>
+                            <div style={{display: 'flex', gap: '0.5rem', alignItems: 'flex-end'}}>
+                                <select 
+                                    className="form-select-modern" 
+                                    value={this.state.component_id} 
+                                    id="component_id"
+                                    name="component_id" 
+                                    onChange={this.handleChange}
+                                    required
+                                    style={{flex: 1}}
+                                >
+                                    <option value="">Choose a component...</option>
+                                    {this.props.components && this.props.components.map(component => (
+                                        <option key={component.id} value={component.id}>
+                                            {component.attributes.name}
+                                        </option>
+                                    ))}
+                                </select>
+                                <Link 
+                                    to={{ pathname: "/components/new", state: { from: 'ideas' } }}
+                                    className="modern-btn modern-btn-secondary" 
+                                    style={{padding: '0.75rem 1rem', whiteSpace: 'nowrap'}}
+                                >
+                                    <i className="fas fa-plus"></i>
+                                    <span>New</span>
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="form-group-modern">
+                            <label className="form-label-modern" htmlFor="description">
+                                <i className="fas fa-align-left" style={{marginRight: '0.5rem'}}></i>
+                                Description
+                            </label>
+                            <textarea 
+                                className="form-textarea-modern" 
+                                value={this.state.description} 
+                                name="description" 
+                                placeholder="Describe your idea in detail..."
+                                onChange={this.handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="form-actions-modern">
+                            <button type="submit" className="modern-btn modern-btn-success">
+                                <i className="fas fa-paper-plane"></i>
+                                <span>Submit Idea</span>
+                            </button>
+                            <Link to={`/ideas`} className="modern-btn modern-btn-secondary">
+                                <i className="fas fa-times"></i>
+                                <span>Cancel</span>
+                            </Link>
+                        </div>                
+                    </form>
+                </div>
             </div>
-
         )
     }
 
 }
 
-export default compose(withRouter, connect(null, {sendIdea}))(NewIdea)
+const mapStateToProps = state => {
+    return {
+        components: state.components || []
+    }
+}
+
+export default compose(withRouter, connect(mapStateToProps, {sendIdea, fetchIdeas, fetchComponents}))(NewIdea)

@@ -1,7 +1,7 @@
 export const sendComment = (data) => {
 
     return (dispatch) => {
-        fetch(`http://localhost:8080/ideas/${data.idea_id}/comments/`, {
+        fetch(`http://localhost:3000/ideas/${data.idea_id}/comments/`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'

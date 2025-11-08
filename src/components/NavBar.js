@@ -1,15 +1,35 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import '../css/modern.css'
 
 const NavBar = (props) => {
 
     return (
-        <nav className="navbar sticky-top navbar-dark bg-dark">
-           <div className="container-fluid">
-            <div className="navbar-brand" style={{color: '#ffc107'}}> <Link to='/' className="link-warning"><i className="far fa-lightbulb" style={{color: '#ffc107'}}></i> Idea Board v1.0 </Link> </div>
+        <nav className="modern-navbar">
+           <div className="navbar-content">
+            <Link to='/' className="navbar-brand">
+                <i className="far fa-lightbulb"></i>
+                <span>Idea Board</span>
+            </Link>
             
-                <Link to='/ideas' style={{paddingRight: '10px'}}><button className="btn btn-warning btn-sm"> Ideas </button> </Link>
-                <Link to='/ideas/new'><button className="btn btn-success btn-sm"> Add Idea </button></Link>
+            <div className="navbar-actions">
+                <Link to='/ideas' className="modern-btn modern-btn-secondary">
+                    <i className="fas fa-lightbulb"></i>
+                    <span>Ideas</span>
+                </Link>
+                <Link to='/components' className="modern-btn modern-btn-secondary">
+                    <i className="fas fa-puzzle-piece"></i>
+                    <span>Components</span>
+                </Link>
+                <Link to='/mindmap' className="modern-btn modern-btn-secondary">
+                    <i className="fas fa-project-diagram"></i>
+                    <span>Mind Map</span>
+                </Link>
+                <Link to='/ideas/new' className="modern-btn modern-btn-success">
+                    <i className="fas fa-plus"></i>
+                    <span>Add Idea</span>
+                </Link>
+            </div>
             </div> 
         </nav>
     )

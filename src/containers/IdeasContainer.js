@@ -21,7 +21,14 @@ class IdeasContainer extends React.Component {
 
     handelLoading () {
         if(this.props.loading) {
-            return <div>Loading...</div>
+            return (
+                <div className="modern-container">
+                    <div className="loading-state">
+                        <div className="loading-spinner"></div>
+                        <p>Loading ideas...</p>
+                    </div>
+                </div>
+            )
         } else {
            return( <div>
                 <Switch>

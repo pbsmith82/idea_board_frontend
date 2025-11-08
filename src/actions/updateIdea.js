@@ -1,7 +1,7 @@
 export const updateIdea = (data) => {
   debugger
     return (dispatch) => {
-      fetch(`http://localhost:8080/ideas/${data.id}`, {
+      fetch(`http://localhost:3000/ideas/${data.id}`, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
