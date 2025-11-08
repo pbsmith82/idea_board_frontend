@@ -1,7 +1,9 @@
+import API_BASE_URL from '../config/api'
+
 export const updateComponent = (data) => {
 
     return (dispatch) => {
-        return fetch(`http://localhost:3000/components/${data.id}`, {
+        return fetch(`${API_BASE_URL}/components/${data.id}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'

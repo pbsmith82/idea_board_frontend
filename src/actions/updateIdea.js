@@ -1,7 +1,8 @@
+import API_BASE_URL from '../config/api'
+
 export const updateIdea = (data) => {
-  debugger
     return (dispatch) => {
-      fetch(`http://localhost:3000/ideas/${data.id}`, {
+      fetch(`${API_BASE_URL}/ideas/${data.id}`, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'

@@ -1,0 +1,24 @@
+{
+  "name": "Idea Board Frontend",
+  "description": "React frontend for Idea Board application",
+  "repository": "https://github.com/yourusername/idea_board_frontend",
+  "keywords": ["react", "frontend", "ideas"],
+  "env": {
+    "REACT_APP_API_URL": {
+      "required": true,
+      "description": "Backend API URL (e.g., https://your-backend.herokuapp.com)"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
+

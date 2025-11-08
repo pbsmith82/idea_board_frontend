@@ -1,7 +1,9 @@
+import API_BASE_URL from '../config/api'
+
 export const deleteComponent = (id) => {
 
     return (dispatch) => {
-        return fetch(`http://localhost:3000/components/${id}`, {
+        return fetch(`${API_BASE_URL}/components/${id}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'

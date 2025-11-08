@@ -1,7 +1,9 @@
+import API_BASE_URL from '../config/api'
+
 export const sendIdea = (data) => {
 
     return (dispatch) => {
-        return fetch('http://localhost:3000/ideas', {
+        return fetch(`${API_BASE_URL}/ideas`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'

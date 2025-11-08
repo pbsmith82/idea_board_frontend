@@ -1,7 +1,9 @@
+import API_BASE_URL from '../config/api'
+
 export const sendDislike = (data) => {
  
     return (dispatch) => {
-        return fetch(`http://localhost:3000/ideas/${data.id}`, {
+        return fetch(`${API_BASE_URL}/ideas/${data.id}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'

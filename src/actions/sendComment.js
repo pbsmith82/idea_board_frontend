@@ -1,7 +1,9 @@
+import API_BASE_URL from '../config/api'
+
 export const sendComment = (data) => {
 
     return (dispatch) => {
-        fetch(`http://localhost:3000/ideas/${data.idea_id}/comments/`, {
+        fetch(`${API_BASE_URL}/ideas/${data.idea_id}/comments/`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
